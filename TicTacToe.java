@@ -43,6 +43,11 @@ public class TicTacToe {
         }
         return true;
     }
+    public void makeMove(int move, String player) {
+        int row = (move - 1) / 3;
+        int col = (move - 1) % 3;
+        board[row][col] = player;
+    }
 
     public static void main(String[] args) {
         TicTacToe game = new TicTacToe();
@@ -53,23 +58,27 @@ public class TicTacToe {
         game.initializeBoard();
         game.printBoard();
         while(!game.checkWin()) {
-        System.out.println("Player 1, enter your move (1-9): ");
-            int move = sc.nextInt();
-            int row = (move - 1) / 3;
-            int col = (move - 1) % 3;
-            game.board[row][col] = "X";
+            System.out.print("Player 1, enter your move (1-9): ");
+            int move1 = sc.nextInt();
+            while(!game.checkMove(move1)) {
+                System.out.print("Invalid move. Player 1, enter your move (1-9): ");
+                move1 = sc.nextInt();
+            }
+            game.makeMove(move1, "X");
             game.printBoard();
-            if (game.checkWin()) {
+            if(game.checkWin()) {
                 System.out.println("Player 1 wins!");
                 break;
             }
-            System.out.println("Player 2, enter your move (1-9): ");
-            move = sc.nextInt();
-            row = (move - 1) / 3;
-            col = (move - 1) % 3;
-            game.board[row][col] = "O";
+            System.out.print("Player 2, enter your move (1-9): ");
+            int move2 = sc.nextInt();
+            while(!game.checkMove(move2)) {
+                System.out.print("Invalid move. Player 2, enter your move (1-9): ");
+                move2 = sc.nextInt();
+            }
+            game.makeMove(move2, "O");
             game.printBoard();
-            if (game.checkWin()) {
+            if(game.checkWin()) {
                 System.out.println("Player 2 wins!");
                 break;
             }
