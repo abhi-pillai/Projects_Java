@@ -65,6 +65,9 @@ public class TicTacToe {
     public static void main(String[] args) {
         TicTacToe game = new TicTacToe();
         Scanner sc = new Scanner(System.in);
+        String playAgain;
+        try{
+        do{
         System.out.println("\t---------------- Welcome to Tic Tac Toe! ----------------");
         System.out.println("| Player 1: X  |");
         System.out.println("| Player 2: O  |");
@@ -72,7 +75,6 @@ public class TicTacToe {
         game.initializeBoard();
         game.printBoard();
         System.out.println("\n");
-        try{
         while(!game.checkWin()) {
             System.out.print("Player 1, enter your move (1-9): ");
             int move1 = sc.nextInt();
@@ -112,14 +114,11 @@ public class TicTacToe {
             }
         }
         System.out.println("Do you want to play again? (yes/no)");
-        String playAgain = sc.next();
+        playAgain = sc.next();
         System.out.println("\n");
-        if(playAgain.equalsIgnoreCase("yes")) {
-            main(null);
-        } else {
+    }while(playAgain.equalsIgnoreCase("yes"));
             System.out.println("\n");
             System.out.println("Game Over!\nThanks for playing!");
-        }
     } catch(Exception e) {
             System.out.println("\n");
             System.out.println("Exiting the game. Goodbye!!!!");
