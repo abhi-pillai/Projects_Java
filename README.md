@@ -72,4 +72,5 @@ A simple two-player Tic Tac Toe game played in the command line, written in Java
 OR
   ```bash
    java TicTacToe.java
-
+```
+This miniproject was a part of [GeeksforGeeks](https://www.geeksforgeeks.org/) #NationSkillUp
