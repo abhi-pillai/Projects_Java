@@ -48,6 +48,16 @@ public class TicTacToe {
         int col = (move - 1) % 3;
         board[row][col] = player;
     }
+    public boolean checkDraw() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (!board[i][j].equals("X") && !board[i][j].equals("O")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public static void main(String[] args) {
         TicTacToe game = new TicTacToe();
@@ -70,6 +80,10 @@ public class TicTacToe {
                 System.out.println("Player 1 wins!");
                 break;
             }
+            if(game.checkDraw()) {
+                System.out.println("It's a draw!");
+                break;
+            }
             System.out.print("Player 2, enter your move (1-9): ");
             int move2 = sc.nextInt();
             while(!game.checkMove(move2)) {
@@ -83,5 +97,6 @@ public class TicTacToe {
                 break;
             }
         }
+            sc.close();
     }
 }
