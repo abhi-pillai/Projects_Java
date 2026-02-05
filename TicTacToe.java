@@ -36,6 +36,9 @@ public class TicTacToe {
         return false;
     }
     public boolean checkMove(int move) {
+        if (move < 1 || move > 9) {
+        return false;
+    }
         int row = (move - 1) / 3;
         int col = (move - 1) % 3;
         if(board[row][col].equals("X") || board[row][col].equals("O")) {
@@ -62,11 +65,14 @@ public class TicTacToe {
     public static void main(String[] args) {
         TicTacToe game = new TicTacToe();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Welcome to Tic Tac Toe!");
-        System.out.println("Player 1: X");
-        System.out.println("Player 2: O");
+        System.out.println("\t---------------- Welcome to Tic Tac Toe! ----------------");
+        System.out.println("| Player 1: X  |");
+        System.out.println("| Player 2: O  |");
+        System.out.println("\n");
         game.initializeBoard();
         game.printBoard();
+        System.out.println("\n");
+        try{
         while(!game.checkWin()) {
             System.out.print("Player 1, enter your move (1-9): ");
             int move1 = sc.nextInt();
@@ -76,11 +82,13 @@ public class TicTacToe {
             }
             game.makeMove(move1, "X");
             game.printBoard();
+            System.out.println("\n");
             if(game.checkWin()) {
                 System.out.println("Player 1 wins!");
                 break;
             }
             if(game.checkDraw()) {
+                System.out.println("\n");
                 System.out.println("It's a draw!");
                 break;
             }
@@ -92,11 +100,33 @@ public class TicTacToe {
             }
             game.makeMove(move2, "O");
             game.printBoard();
+            System.out.println("\n");
             if(game.checkWin()) {
                 System.out.println("Player 2 wins!");
                 break;
             }
+            if(game.checkDraw()) {
+                System.out.println("\n");
+                System.out.println("It's a draw!");
+                break;
+            }
         }
+        System.out.println("Do you want to play again? (yes/no)");
+        String playAgain = sc.next();
+        System.out.println("\n");
+        if(playAgain.equalsIgnoreCase("yes")) {
+            main(null);
+        } else {
+            System.out.println("\n");
+            System.out.println("Game Over!\nThanks for playing!");
+        }
+    } catch(Exception e) {
+            System.out.println("\n");
+            System.out.println("Exiting the game. Goodbye!!!!");
+            System.out.println("\n");
+        }
+        finally {
             sc.close();
+        }
     }
 }
